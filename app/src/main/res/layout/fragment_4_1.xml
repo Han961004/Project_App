@@ -1,0 +1,198 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.fragment4_1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ET"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <EditText
+                android:id="@+id/settingSecondET"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="초 (진행)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <EditText
+                android:id="@+id/settingRestET"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="초 (휴식)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <EditText
+                android:id="@+id/settingSetET"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="세트"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/intervalBtnET"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인터벌시작"
+            android:layout_marginTop="60dp"
+
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/TV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <TextView
+                android:id="@+id/SecondTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="초 (진행)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <TextView
+                android:id="@+id/RestTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:text="초 (휴식)"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="60dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginHorizontal="30dp">
+
+            <TextView
+                android:id="@+id/SetTV"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:hint="0"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="세트"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/intervalBtnTV"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="인터벌중지"
+            android:layout_marginTop="60dp"
+
+            />
+    </LinearLayout>
+</LinearLayout>
