@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.core.util.Pair;
 import androidx.fragment.app.Fragment;
 
+import com.example.app.DBHelper;
 import com.example.app.R;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
@@ -28,7 +29,8 @@ public class fragment2 extends Fragment {
     SimpleDateFormat simpleDateFormat;
     private TextView date_picker_text;
     private Button date_picker_btn;
-    private Button date_range_picker_btn;
+    private Button sql;
+    DBHelper DBHelper;
 
     @Override
     public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState){
@@ -40,7 +42,7 @@ public class fragment2 extends Fragment {
         today = MaterialDatePicker.todayInUtcMilliseconds();
         date_picker_text = view.findViewById(R.id.date_picker_text);
         date_picker_btn = (Button)view.findViewById(R.id.date_picker_btn);
-        date_range_picker_btn = (Button)view.findViewById(R.id.date_range_picker_btn);
+        sql = (Button)view.findViewById(R.id.sql);
 
 
 
@@ -60,10 +62,17 @@ public class fragment2 extends Fragment {
                         simpleDateFormat = new SimpleDateFormat("yyyy년 MM월 dd일");
                         Date date = new Date();
                         date.setTime(selection);
-
                         String dateString = simpleDateFormat.format(date);
-
                         date_picker_text.setText(dateString);
+
+
+                        System.out.println(dateString);
+
+//                        DBHelper.onUpgrade();
+
+
+
+
                     }
                 });
 
@@ -74,8 +83,8 @@ public class fragment2 extends Fragment {
 
 
         
-        // 기간 날짜 선택시
-        date_range_picker_btn.setOnClickListener(new View.OnClickListener() {
+        // 목표 설정 선택시
+        sql.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -106,20 +115,6 @@ public class fragment2 extends Fragment {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         return view;
     }
 }

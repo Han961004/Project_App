@@ -1,6 +1,7 @@
 package com.example.app;
 
 import android.content.DialogInterface;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -14,19 +15,33 @@ import androidx.appcompat.app.AppCompatActivity;
 public class start extends AppCompatActivity {
     TextView text;
     Animation anim;
+    DBHelper DBHelper;
+    SQLiteDatabase db;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
-        text = findViewById(R.id.text);
 
+
+        text = findViewById(R.id.text);
         anim = new AlphaAnimation(0.0f,1.0f);
         anim.setDuration(200);
         anim.setStartOffset(200);
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         text.startAnimation(anim);
+
+
+
+
+
+        DBHelper = new DBHelper(this,"test.db",null,1);
+
+        db = DBHelper.getWritableDatabase();
+        DBHelper.onCreate(db);
+        db.close();
 
 
     }
@@ -45,6 +60,16 @@ public class start extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(getApplicationContext(), lobby_frame.class);
                 startActivity(intent);
+
+
+
+
+
+
+
+
+
+
             }
         });
 

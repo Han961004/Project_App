@@ -8,6 +8,23 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="오늘도 포기하지 않고 목표를 달성해보아요"
+        android:outlineAmbientShadowColor="@color/black"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:text="월별 차트 보기"
+        android:drawable="@drawable/cart"
+        />
 
 
 </FrameLayout>
