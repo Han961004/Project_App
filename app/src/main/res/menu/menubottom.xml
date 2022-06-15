@@ -9,7 +9,7 @@
         android:title="일정표"/>
     <item
         android:id="@+id/menu3"
-        android:title="자세"/>
+        android:title="만보기"/>
     <item
         android:id="@+id/menu4"
         android:title="타이머"/>

@@ -22,8 +22,6 @@ public class fragment4 extends Fragment {
         return view;
     }
 
-
-
     @Override
     public void onResume(){
         super.onResume();
@@ -33,10 +31,8 @@ public class fragment4 extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menubar, menu);
+        inflater.inflate(R.menu.menutimer, menu);
     }
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){

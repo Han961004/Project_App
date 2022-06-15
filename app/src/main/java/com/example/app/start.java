@@ -11,19 +11,18 @@ import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class start extends AppCompatActivity {
     TextView text;
     Animation anim;
-    DBHelper DBHelper;
-    SQLiteDatabase db;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.start);
-
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         text = findViewById(R.id.text);
         anim = new AlphaAnimation(0.0f,1.0f);
@@ -35,13 +34,6 @@ public class start extends AppCompatActivity {
 
 
 
-
-
-        DBHelper = new DBHelper(this,"test.db",null,1);
-
-        db = DBHelper.getWritableDatabase();
-        DBHelper.onCreate(db);
-        db.close();
 
 
     }

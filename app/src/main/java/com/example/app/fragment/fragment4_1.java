@@ -113,7 +113,7 @@ public class fragment4_1 extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menubar, menu);
+        inflater.inflate(R.menu.menutimer, menu);
     }
 
     @Override

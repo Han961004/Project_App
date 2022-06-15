@@ -5,9 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".fragment.fragment2">
 
     <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:id="@+id/dateString"/>
 
     <TextView
         android:id="@+id/date_picker_text"
@@ -65,6 +71,7 @@
                 android:outlineAmbientShadowColor="@color/black"
                 android:textSize="20sp"/>
             <EditText
+                android:id="@+id/pushupcount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,6 +108,7 @@
                 android:outlineAmbientShadowColor="@color/black"
                 android:textSize="20sp"/>
             <EditText
+                android:id="@+id/crunchcount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -137,6 +145,7 @@
                 android:outlineAmbientShadowColor="@color/black"
                 android:textSize="20sp"/>
             <EditText
+                android:id="@+id/squartcount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
