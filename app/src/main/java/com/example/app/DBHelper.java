@@ -14,15 +14,15 @@ import androidx.annotation.Nullable;
 public class DBHelper extends SQLiteOpenHelper {
 
 
-    private static final String DATABASE_NAME = "Practice2.db";
+    private static final String DATABASE_NAME = "Practices1.db";
     private static final String TABLE_NAME = "practice_library";
-
-
+    private static final String TABLE_NAME2 = "practice_library2";
     private static final String COLUMN_ID = "id";
     private static final String COLUMN_DATE = "date";
     private static final String COLUMN_PUSHUP = "pushup";
     private static final String COLUMN_CRUNCH = "crunch";
     private static final String COLUMN_SQUART = "squart";
+    private static final String COLUMN_WEIGHT = "weight";
 
 
 
@@ -35,9 +35,10 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String sql = "CREATE TABLE if not EXISTS " + TABLE_NAME + "(date TEXT PRIMARY KEY, pushup TEXT, crunch TEXT, squart TEXT)";
-
+        String sql = "CREATE TABLE if not EXISTS " + TABLE_NAME + "(date TEXT PRIMARY KEY, pushup INTEGER, crunch INTEGER, squart INTEGER)";
+        String sql2 = "CREATE TABLE if not EXISTS " + TABLE_NAME2 + "(date TEXT PRIMARY KEY, weight REAL)";
         db.execSQL(sql);
+        db.execSQL(sql2);
     }
 
     @Override
@@ -48,13 +49,24 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void insertData2(String date, String a, String b, String c) {
+    public void insertData2(String date, Integer a, Integer b, Integer c) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         String sql = "insert or replace into practice_library (date, pushup, crunch, squart) values ('" + date + "', '" + a + "', '" + b + "', '" + c + "');";
 
         db.execSQL(sql);
     }
+
+    public void insertWeight(String date, float a) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String sql = "insert or replace into practice_library2 (date, weight) values ('" + date + "', '" + a + "');";
+
+        db.execSQL(sql);
+    }
+
+
+
 
     public Cursor getAllData(String date){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -63,6 +75,12 @@ public class DBHelper extends SQLiteOpenHelper {
         return res;
     }
 
+    public Cursor getAllData2(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME2 + " where date = '" + date + "';", null);
+
+        return res;
+    }
 
 
 }
@@ -74,36 +92,3 @@ public class DBHelper extends SQLiteOpenHelper {
 
 
 
-
-
-//    public boolean insertData(String date, String a, String b, String c){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//
-//        cv.put(COLUMN_DATE, date);
-//        cv.put(COLUMN_PUSHUP, a);
-//        cv.put(COLUMN_CRUNCH, b);
-//        cv.put(COLUMN_SQUART, c);
-//
-//        long result = db.insert(TABLE_NAME, null, cv);
-//
-//        if (result == -1)
-//            return false;
-//        else
-//            return true;
-//    }
-//
-//
-//    public boolean updateData(String date, String a, String b, String c){
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues cv = new ContentValues();
-//
-//        cv.put(COLUMN_DATE, date);
-//        cv.put(COLUMN_PUSHUP, a);
-//        cv.put(COLUMN_CRUNCH, b);
-//        cv.put(COLUMN_SQUART, c);
-//
-//        db.update(TABLE_NAME, cv, "date = ?", new String[] {date});
-//
-//        return true;
-//    }

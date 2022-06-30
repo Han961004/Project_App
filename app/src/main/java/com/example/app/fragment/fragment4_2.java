@@ -23,8 +23,13 @@ public class fragment4_2 extends Fragment {
 
     TextView hourET, minuteET, secondET, recordView;
     Button startBtn, stopBtn, recordBtn;
+
     int hour, minute, second = 0;
-    boolean a;
+
+    private final Timer mTimer = new Timer();
+    private TimerTask mTimerTask;
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,9 +41,9 @@ public class fragment4_2 extends Fragment {
         minuteET = view.findViewById(R.id.minuteET);
         secondET = view.findViewById(R.id.secondET);
 
-        hourET.setText(hour + "");
-        minuteET.setText(minute + "");
-        secondET.setText(second + "");
+        hourET.setText("0" + hour + "");
+        minuteET.setText("0" + minute + "");
+        secondET.setText("0" + second + "");
 
         startBtn = view.findViewById(R.id.startBtn);
         stopBtn = view.findViewById(R.id.stopBtn);
@@ -51,64 +56,16 @@ public class fragment4_2 extends Fragment {
             @Override
             public void onClick(View view) {
 
-                a = true;
-
-                Timer timer = new Timer();
-                TimerTask timerTask = new TimerTask() {
-                    @Override
-                    public void run() {
-
-                        while (!a) {
-                                            // 여기서 멈춰버린다 false하면
-                        }
-
-
-                        second++;
-                        secondET.setText(second + "");
-
-                        if (second == 60) {
-                            minute++;
-                            minuteET.setText(minute + "");
-                            second = 0;
-                        }
-
-                        if (minute == 60) {
-                            hour++;
-                            hourET.setText(hour + "");
-                            minute = 0;
-                        }
-
-                        //시, 분, 초가 10이하(한자리수) 라면
-                        // 숫자 앞에 0을 붙인다 ( 8 -> 08 )
-                        if (second <= 9) {
-                            secondET.setText("0" + second);
-                        } else {
-                            secondET.setText(Integer.toString(second));
-                        }
-
-                        if (minute <= 9) {
-                            minuteET.setText("0" + minute);
-                        } else {
-                            minuteET.setText(Integer.toString(minute));
-                        }
-
-                        if (hour <= 9) {
-                            hourET.setText("0" + hour);
-                        } else {
-                            hourET.setText(Integer.toString(hour));
-                        }
-                    }
-                };
-                timer.schedule(timerTask, 0, 1000); //Timer 실행
+                mTimerTask = createTimerTask();
+                mTimer.schedule(mTimerTask, 0, 1000); //Timer 실행
             }
         });
 
         // 인터럽트 쓰는게 좋은데 못 하겠네
-
         stopBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                a = false;
+                mTimerTask.cancel();
             }
         });
 
@@ -116,17 +73,53 @@ public class fragment4_2 extends Fragment {
             @Override
             public void onClick(View v) {
                 recordView.setText(recordView.getText() + "\n" + hourET.getText() + " : " + minuteET.getText() + " : " + secondET.getText() + "\n");
-
-//                recordT.setText(mRecordTextView.getText() + mTimeTextView.getText().toString() + "\n");
             }
         });
-
-
         return view;
     }
 
+    private TimerTask createTimerTask() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                second++;
+                secondET.setText(second + "");
 
+                if (second == 60) {
+                    minute++;
+                    minuteET.setText(minute + "");
+                    second = 0;
+                }
 
+                if (minute == 60) {
+                    hour++;
+                    hourET.setText(hour + "");
+                    minute = 0;
+                }
+
+                //시, 분, 초가 10이하(한자리수) 라면
+                // 숫자 앞에 0을 붙인다 ( 8 -> 08 )
+                if (second <= 9) {
+                    secondET.setText("0" + second);
+                } else {
+                    secondET.setText(Integer.toString(second));
+                }
+
+                if (minute <= 9) {
+                    minuteET.setText("0" + minute);
+                } else {
+                    minuteET.setText(Integer.toString(minute));
+                }
+
+                if (hour <= 9) {
+                    hourET.setText("0" + hour);
+                } else {
+                    hourET.setText(Integer.toString(hour));
+                }
+            }
+        };
+        return timerTask;
+    }
 
 
 
@@ -156,9 +149,6 @@ public class fragment4_2 extends Fragment {
             case R.id.menu_item2:
                 getParentFragmentManager().beginTransaction().replace(R.id.frame, new fragment4_2()).commit();
                 break;
-//            case R.id.menu_item3:
-//                getParentFragmentManager().beginTransaction().replace(R.id.frame, new fragment4_3()).commit();
-//                break;
         }
         return super.onOptionsItemSelected(item);
     }

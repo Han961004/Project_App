@@ -18,7 +18,7 @@ public class fragment4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_4, container, false);
         setHasOptionsMenu(true);
-
+        getActivity().setTitle("타이머");
         return view;
     }
 

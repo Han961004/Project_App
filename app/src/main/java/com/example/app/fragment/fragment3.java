@@ -40,7 +40,7 @@ public class fragment3 extends Fragment implements SensorEventListener {
     public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_3, container, false);
         setHasOptionsMenu(true);
-
+        getActivity().setTitle("만보기");
         context = container.getContext();
 
         stepCountView = view.findViewById(R.id.stepCountView);
@@ -105,7 +105,6 @@ public class fragment3 extends Fragment implements SensorEventListener {
                 currentSteps++;
                 stepCountView.setText(String.valueOf(currentSteps));
             }
-
         }
     }
 

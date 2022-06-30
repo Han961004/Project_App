@@ -1,5 +1,6 @@
 package com.example.app.fragment;
 
+import android.app.ActionBar;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -50,13 +51,15 @@ public class fragment2 extends Fragment {
     public View onCreateView (LayoutInflater inflater , ViewGroup container , Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.fragment_2,container,false);
 
-        context = container.getContext();
+        getActivity().setTitle("하루 목표 설정하기");
 
+
+        context = container.getContext();
         calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         today = MaterialDatePicker.todayInUtcMilliseconds();
         date_picker_text = view.findViewById(R.id.date_picker_text);
-        date_picker_btn = (Button)view.findViewById(R.id.date_picker_btn);
-        sql = (Button)view.findViewById(R.id.sql);
+        date_picker_btn = view.findViewById(R.id.date_picker_btn);
+        sql = view.findViewById(R.id.sql);
         pushupcount = view.findViewById(R.id.pushupcount);
         crunchcount = view.findViewById(R.id.crunchcount);
         squartcount = view.findViewById(R.id.squartcount);
@@ -83,17 +86,7 @@ public class fragment2 extends Fragment {
                         String dateString = simpleDateFormat.format(date);
                         date_picker_text.setText(dateString);
 
-
                         dateString1 = simpleDateFormat.format(date);
-
-
-
-
-
-
-
-
-
 
                         try{
                             Cursor res = mydb.getAllData(dateString1);
@@ -113,26 +106,13 @@ public class fragment2 extends Fragment {
 
                             Toast.makeText(context, "Loading Success", Toast.LENGTH_LONG).show();
                         }catch (Exception e){
-                            Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                            Toast.makeText(context, "Error1", Toast.LENGTH_LONG).show();
                         }
-
-
-
-
-
-
-
-
-
                     }
                 });
 
             }
         });
-
-
-
-
 
         // 목표 설정 선택시
         sql.setOnClickListener(new View.OnClickListener() {
@@ -140,21 +120,16 @@ public class fragment2 extends Fragment {
             public void onClick(View view) {
 
 
-
-
                 try{
                     mydb.insertData2(dateString1,
-                            pushupcount.getText().toString(),
-                            crunchcount.getText().toString(),
-                            squartcount.getText().toString());
+                            Integer.parseInt(pushupcount.getText().toString()),
+                            Integer.parseInt(crunchcount.getText().toString()),
+                            Integer.parseInt(squartcount.getText().toString()));
                     Toast.makeText(context, "Data Insert Success", Toast.LENGTH_LONG).show();
 
                 }catch (Exception e){
-                    Toast.makeText(context, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Error2", Toast.LENGTH_LONG).show();
                 }
-
-
-
 
             }
         });

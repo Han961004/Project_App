@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.MenuItem;
 
 import com.example.app.fragment.fragment1;
@@ -15,11 +16,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 public class lobby_frame extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView; //바텀 네비게이션 뷰
-
-
-
-
-                                    // 프래그먼트의 생명주기 끊어줘야 안 멈추나봄
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

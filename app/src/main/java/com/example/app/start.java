@@ -18,6 +18,8 @@ public class start extends AppCompatActivity {
     Animation anim;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,7 @@ public class start extends AppCompatActivity {
         anim.setRepeatMode(Animation.REVERSE);
         anim.setRepeatCount(Animation.INFINITE);
         text.startAnimation(anim);
+
 
 
 
@@ -52,15 +55,6 @@ public class start extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int id) {
                 Intent intent = new Intent(getApplicationContext(), lobby_frame.class);
                 startActivity(intent);
-
-
-
-
-
-
-
-
-
 
             }
         });

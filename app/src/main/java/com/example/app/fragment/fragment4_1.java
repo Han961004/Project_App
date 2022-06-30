@@ -27,25 +27,27 @@ public class fragment4_1 extends Fragment {
     Button intervalBtnET, intervalBtnTV;
     int Second1, Rest, Set = 0;
 
+    private final Timer mTimer = new Timer();
+    private TimerTask mTimerTask;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_4_1,container,false);
         setHasOptionsMenu(true);
 
-        ET = (LinearLayout) view.findViewById(R.id.ET);
-        TV = (LinearLayout) view.findViewById(R.id.TV);
+        ET = view.findViewById(R.id.ET);
+        TV = view.findViewById(R.id.TV);
 
-        intervalBtnET = (Button) view.findViewById(R.id.intervalBtnET);      //시작
-        intervalBtnTV = (Button) view.findViewById(R.id.intervalBtnTV);      //중지
+        intervalBtnET = view.findViewById(R.id.intervalBtnET);      //시작
+        intervalBtnTV = view.findViewById(R.id.intervalBtnTV);      //중지
 
-        settingRestET = (EditText) view.findViewById(R.id.settingRestET);
-        settingSecondET = (EditText) view.findViewById(R.id.settingSecondET);
-        settingSetET = (EditText) view.findViewById(R.id.settingSetET);
+        settingRestET = view.findViewById(R.id.settingRestET);
+        settingSecondET = view.findViewById(R.id.settingSecondET);
+        settingSetET = view.findViewById(R.id.settingSetET);
 
-        SecondTV = (TextView) view.findViewById(R.id.SecondTV);
-        SetTV = (TextView) view.findViewById(R.id.SetTV);
-        RestTV = (TextView) view.findViewById(R.id.RestTV);
+        SecondTV = view.findViewById(R.id.SecondTV);
+        SetTV = view.findViewById(R.id.SetTV);
+        RestTV = view.findViewById(R.id.RestTV);
 
         intervalBtnET.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,45 +65,58 @@ public class fragment4_1 extends Fragment {
                 Set = Integer.parseInt(settingSetET.getText().toString());
 
 
-
-
-
-                Timer timer1 = new Timer();
-                TimerTask timerTask1 = new TimerTask() {
-                    @Override
-                    public void run() {
-                        if (Second1 != 0) {
-
-                            Second1--;
-                            SecondTV.setText(Second1 + "");
-
-                        } else if (Rest!=0){
-
-                            Rest--;
-                            RestTV.setText(Rest + "");
-
-                        } else if (Set != 0){
-
-                            Set--;
-                            SetTV.setText(Set + "");
-
-                            Rest = Integer.parseInt(settingRestET.getText().toString());
-                            RestTV.setText(Rest + "");
-
-                            Second1 = Integer.parseInt(settingSecondET.getText().toString());
-                            SecondTV.setText(Second1 + "");
-
-                        } else {
-                            
-                            // 다 되었다고 알림벨 설정하기
-
-                        }
-                    }
-                };
-                timer1.schedule(timerTask1, 0, 1000); //Timer 실행
+                mTimerTask = createTimerTask();
+                mTimer.schedule(mTimerTask, 0, 1000); //Timer 실행
             }
         });
+
+        intervalBtnTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ET.setVisibility(View.VISIBLE);
+                TV.setVisibility(View.GONE);
+
+                if(mTimerTask != null)
+                    mTimerTask.cancel();
+            }
+        });
+
         return view;
+    }
+
+    private TimerTask createTimerTask(){
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (Second1 != 0) {
+
+                    Second1--;
+                    SecondTV.setText(Second1 + "");
+
+                } else if (Rest!=0){
+
+                    Rest--;
+                    RestTV.setText(Rest + "");
+
+                } else if (Set != 0){
+
+                    Set--;
+                    SetTV.setText(Set + "");
+
+                    Rest = Integer.parseInt(settingRestET.getText().toString());
+                    RestTV.setText(Rest + "");
+
+                    Second1 = Integer.parseInt(settingSecondET.getText().toString());
+                    SecondTV.setText(Second1 + "");
+
+                } else {
+
+                    // 다 되었다고 알림벨 설정하기
+
+                }
+            }
+        };
+        return timerTask;
     }
 
     @Override
